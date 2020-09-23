@@ -3,10 +3,46 @@ from app import app
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index.html')
 def index():
-    return render_template('base')
+    return render_template('index.html', title='Home')
 
-@app.route('/artists')
+@app.route('/artists.html')
 def artists():
-    return render_template('artists')
+    artists = [
+        {
+            'author': {'username': 'Feed Me Jack'},
+            'body': 'Feed Me Jack were a short-lived rock sextet / quintet hailing from Oakland, CA. For about five years when they were active (from 2011 until 2016) they had released 4 eps on their own (e.g. via Bandcamp), and no other info around them actually.'
+        },
+        {
+            'author': {'username': 'Bobbing'},
+            'body': 'This is a chunk of test characters to see if this works'
+        },
+        {
+            'author': {'username': 'Still Woozy'},
+            'body': 'This is a chunk of test characters to see if this works'
+        }
+    ]
+    return render_template('artists.html', artists=artists, title='Artists')
+
+@app.route('/artist.html')
+def artist():
+    events = [
+        {
+            'body': 'North American Tour starting year (2021)'
+        },
+        {
+            'body': 'Release of a comeback album (2021)'
+        },
+        {
+            'body': 'Reuniting the band finally after many years'
+        },
+        {
+            'body': 'Doing it all for the fans :)'
+        }
+    ]
+    return render_template('artist.html', events=events, title='Artist')
+
+@app.route('/addArtist.html')
+def addArtist():
+    return render_template('addArtist.html', title='Add Artist')

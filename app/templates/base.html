@@ -20,6 +20,7 @@ body {
   text-align: center;
   padding: 14px 16px;
   font-size: 17px;
+    text-decoration: none;
 }
 
 .topnav a:hover {
@@ -35,13 +36,12 @@ body {
 </head>
 <body>
 
-<div class="topnav">
-  <a class="active" href="base.html">Home</a>
-  <a href="artists.html">Artists</a>
-  <a href="addArtist.html">New Artists</a>
-</div>
-
-<h1>Welcome music listeners!</h1>
-<p><b>Under construction</b></p>
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="artists.html">Artists</a>
+        <a href="addArtist.html">New Artists</a>
+    </div>
+    <hr>
+    {% block content %}{% endblock %}
 </body>
 </html>
