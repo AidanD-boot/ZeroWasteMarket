@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 from app import app
+from app.forms import newArtistForm
 
 
 @app.route('/')
@@ -27,7 +28,7 @@ def artists():
 
 @app.route('/artist.html')
 def artist():
-    events = [
+    abouts = [
         {
             'body': 'North American Tour starting year (2021)'
         },
@@ -41,8 +42,12 @@ def artist():
             'body': 'Doing it all for the fans :)'
         }
     ]
-    return render_template('artist.html', events=events, title='Artist')
+    return render_template('artist.html', abouts=abouts, title='Artist')
 
-@app.route('/addArtist.html')
+@app.route('/addArtist.html', methods=['GET', 'POST'])
 def addArtist():
-    return render_template('addArtist.html', title='Add Artist')
+    form = newArtistForm()
+    if form.validate_on_submit():
+        flash('Artist submitted with name="{}" and bio="{}"'.format(form.artistName.data, form.bio.data))
+        return redirect(url_for('index'))
+    return render_template('addArtist.html', title='Add Artist', form=form)
