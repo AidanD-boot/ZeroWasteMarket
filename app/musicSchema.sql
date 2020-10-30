@@ -1,6 +1,7 @@
 create table Artist (
     id	            integer primary key autoincrement,
     artistName      varchar(64) not null,
+    homeTown        varchar(64) not null,
     bio             varchar(200) not null
 );
 

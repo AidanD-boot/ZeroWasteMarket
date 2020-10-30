@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1><b>Feed Me Jack</b></h1>
-    <div><h3><b>About: </b></h3>
-        <p>Feed Me Jack were a short-lived rock sextet / quintet hailing from Oakland, CA. For about five years when they were active (from 2011 until 2016) they had released 4 eps on their own (e.g. via Bandcamp), and no other info around them actually.</p>
-    </div>
     <div>
-        <h3>Events: </h3>
+        <h1><b>{{ artist.name }}</b></h1>
+        <h3><b>Hometown: </b></h3>
+            <p>{{ artist.hometown }}</p>
+        <h3><b>Bio: </b></h3>
         <ul>
-            {% for abouts in abouts %}
-            <li>{{ abouts.body }}</li>
-            {% endfor %}
+            <li>{{ artist.bio }}</li>
         </ul>
     </div>
 
