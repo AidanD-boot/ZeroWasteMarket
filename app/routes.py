@@ -110,9 +110,8 @@ def populateDb():
     a3 = Artist(name="Peach Pit", hometown="Vancouver", bio="The Canadian band is led by singer and rhythm guitarist Neil Smith, lead guitarist Christopher Vanderkooy, bassist Peter Wilton, and drummer Mikey Pascuzzi. ... The band's music videos are produced by videographer Lester Lyons-Hookham.")
     v1 = Venue(name="The Haunt", location="Ithaca")
     v2 = Venue(name="Madison Square Garden", location="NYC")
-    e1 = Event(name="Spoopy Time", eventVenue="The Haunt", dateTime="10/28/2020")
 
-    db.session.add_all([a1,a2,a3,v1,v2,e1])
+    db.session.add_all([a1,a2,a3,v1,v2])
     db.session.commit()
     return "DB populated"
 
