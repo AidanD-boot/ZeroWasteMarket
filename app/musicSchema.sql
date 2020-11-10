@@ -1,3 +1,10 @@
+create table User (
+    id              integer primary key autoincrement,
+    username        varchar(64) not null,
+    email           varchar(64) not null,
+    password_hash   varchar(64) not null
+);
+
 create table Artist (
     id	            integer primary key autoincrement,
     artistName      varchar(64) not null,

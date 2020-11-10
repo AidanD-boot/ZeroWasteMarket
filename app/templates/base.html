@@ -34,7 +34,15 @@ body {
     <div class="topnav">
         <a href="/index">Home</a>
         <a href="/artists">Artists</a>
+        <a href="/events">Events</a>
         <a href="/addArtist">Add an Artist</a>
+        <a href="/addVenue">Add a Venue</a>
+        <a href="/addEvent">Add an Event</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
     </div>
     <hr>
     {% with messages = get_flashed_messages() %}
