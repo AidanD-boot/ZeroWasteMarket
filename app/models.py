@@ -2,22 +2,17 @@ from app import db,login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+class Produce(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(64), index=True)
+    quantity = db.Column(db.String(64), index=True)
+
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
     hometown = db.Column(db.String(64), index=True)
     bio = db.Column(db.String(300), index=True)
-
-class Venue(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True)
-    location = db.Column(db.String(64), index=True)
-
-class Event(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True)
-    dateTime = db.Column(db.DateTime, index=True)
-    eventVenue = db.Column(db.String(64), index=True)
 
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)

@@ -11,7 +11,7 @@ from app.models import Artist,User,Event,Venue
 def index():
     return render_template('index.html', title='Home')
 
-@app.route('/artists')
+@app.route('/browse')
 def artists():
     artists = Artist.query.all()
     return render_template('artists.html', artists=artists, title='Artists')
