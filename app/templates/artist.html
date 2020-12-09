@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h1><b>{{ artist.name }}</b></h1>
+        <h3><b>Hometown: </b></h3>
+            <p>{{ artist.hometown }}</p>
+        <h3><b>Bio: </b></h3>
+        <ul>
+            <li>{{ artist.bio }}</li>
+        </ul>
+    </div>
+
+{% endblock %}
