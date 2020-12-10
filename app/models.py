@@ -27,6 +27,7 @@ class Listing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
+    imageRef = db.Column(db.String(128))
     supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))
     produce_id = db.Column(db.Integer, db.ForeignKey('produce.id'))
     contents = db.relationship('Content', backref='list', lazy='dynamic')
