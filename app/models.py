@@ -8,12 +8,6 @@ class Produce(db.Model):
     type = db.Column(db.String(64), index=True)
     quantity = db.Column(db.String(64), index=True)
 
-class Artist(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True)
-    hometown = db.Column(db.String(64), index=True)
-    bio = db.Column(db.String(300), index=True)
-
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True)

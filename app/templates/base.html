@@ -34,15 +34,20 @@
     <body>
     <div class="topnav">
         <a href="/index">Home</a>
-        <a href="/artists">Artists</a>
-        <a href="/events">Events</a>
-        <a href="/addArtist">Add an Artist</a>
-        <a href="/addVenue">Add a Venue</a>
-        <a href="/addEvent">Add an Event</a>
+        <a href="/browse">Browse</a>
         {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">Login</a>
         {% else %}
-        <a href="{{ url_for('logout') }}">Logout</a>
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
         {% endif %}
     </div>
     <hr>
