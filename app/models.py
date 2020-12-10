@@ -37,6 +37,7 @@ class Listing(db.Model):
         return '<Listing {} {}>'.format(self.price, self.quantity)
 
 class ProduceToKeyword(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     produce_id = db.Column(db.Integer, db.ForeignKey('produce.id'))
     keyword_id = db.Column(db.Integer, db.ForeignKey('keyword.id'))
 
@@ -49,6 +50,7 @@ class Keyword(db.Model):
         return '<Keyword {}>'.format(self.name)
 
 class Content(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     quantity = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     listing_id = db.Column(db.Integer, db.ForeignKey('listing.id'))
