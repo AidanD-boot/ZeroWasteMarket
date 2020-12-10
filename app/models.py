@@ -5,11 +5,12 @@ from flask_login import UserMixin
 class Produce(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Integer, primary_key=True)
+    imageRef = db.Column(db.String(128))
     listings = db.relationship('Listing', backref='product', lazy='dynamic')
     keywords = db.relationship('ProduceToKeywords', backref='product', lazy='dynamic')
 
     def __repr__(self):
-        return '<Produce {}>'.formate(self.name)
+        return '<Produce {} {}>'.formate(self.name, self.imageRef)
 
 class Supplier(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,7 +28,6 @@ class Listing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
-    imageRef = db.Column(db.String(128))
     supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))
     produce_id = db.Column(db.Integer, db.ForeignKey('produce.id'))
     contents = db.relationship('Content', backref='list', lazy='dynamic')
