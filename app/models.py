@@ -4,10 +4,10 @@ from flask_login import UserMixin
 
 class Produce(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True)
     imageRef = db.Column(db.String(128))
     listings = db.relationship('Listing', backref='lproduct', lazy='dynamic')
-    keywords = db.relationship('ProduceToKeywords', backref='kproduct', lazy='dynamic')
+    keywords = db.relationship('Producetokeyword', backref='kproduct', lazy='dynamic')
 
 
     def __repr__(self):
@@ -36,7 +36,7 @@ class Listing(db.Model):
     def __repr__(self):
         return '<Listing {} {}>'.format(self.price, self.quantity)
 
-class ProduceToKeyword(db.Model):
+class Producetokeyword(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     produce_id = db.Column(db.Integer, db.ForeignKey('produce.id'))
     keyword_id = db.Column(db.Integer, db.ForeignKey('keyword.id'))
@@ -44,7 +44,7 @@ class ProduceToKeyword(db.Model):
 class Keyword(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
-    products = db.relationship('ProductToKeyword', backref='tag', lazy='dynamic')
+    products = db.relationship('Producetokeyword', backref='tag', lazy='dynamic')
 
     def __repr__(self):
         return '<Keyword {}>'.format(self.name)

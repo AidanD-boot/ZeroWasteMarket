@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-    <h1><b>Events</b></h1>
-{% for events in events %}
-    <div><ul><li><a href="{{ url_for('event', name=events.name) }}">{{ events.name }}</a></li></ul></div>
-{% endfor %}
-{% endblock %}
