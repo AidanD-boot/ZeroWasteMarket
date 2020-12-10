@@ -6,8 +6,8 @@ class Produce(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Integer, primary_key=True)
     imageRef = db.Column(db.String(128))
-    listings = db.relationship('Listing', backref='product', lazy='dynamic')
-    keywords = db.relationship('ProduceToKeywords', backref='product', lazy='dynamic')
+    listings = db.relationship('Listing', backref='lproduct', lazy='dynamic')
+    keywords = db.relationship('ProduceToKeywords', backref='kproduct', lazy='dynamic')
 
     def __repr__(self):
         return '<Produce {} {}>'.formate(self.name, self.imageRef)
