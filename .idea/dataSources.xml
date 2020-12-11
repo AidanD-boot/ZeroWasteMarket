@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/app/musicProj.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="app" uuid="5b16095b-cac3-411c-a1a9-ed5be9be6d3e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\hosha\Documents\GitHub\ZeroWasteMarket\app.db</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -85,6 +85,9 @@ def popdb():
     k20 = Keyword(name='cereal')
     k21 = Keyword(name='cabbage')
 
+    db.session.add_all([k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, k20, k21])
+    db.session.commit()
+
     s1 = Supplier(name='Griggs Farm', address='599 Boston Rd', zipcode=1821, city='Billerica', state='MA')
     s2 = Supplier(name='Krochmal Farms', address='31 Jennie\'s Way', zipcode=1876, city='Tewksbury', state='MA')
     s3 = Supplier(name='Great Brook Dairy Farm', address='247 North Rd', zipcode=1741, city='Carlisle', state='MA')
@@ -104,6 +107,9 @@ def popdb():
     s17 = Supplier(name='Straw Pocket Farm', address='1388 Ridge Rd', zipcode=14882, city='Lansing', state='NY')
     s18 = Supplier(name='Dygert Farms', address='260 Central Chapel Rd', zipcode=14817, city='Brooktondale', state='NY')
     s19 = Supplier(name='TC3 Farm', address='100 Cortland Rd', zipcode=13053, city='Dryden', state='NY')
+
+    db.session.add_all([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19])
+    db.session.commit()
 
     p1 = Produce(name='Brocolli', imageRef='https://cdn.mos.cms.futurecdn.net/r8NK24bmcMgSib5zWKKQkW.jpg')
     p2 = Produce(name='Spinach', imageRef='https://i.ndtvimg.com/i/2016-11/spinach_620x350_81477995047.jpg')
@@ -140,6 +146,9 @@ def popdb():
     p19 = Produce(name='Chili Peppers', imageRef='https://scitechdaily.com/images/Chili-Peppers.jpg')
     p20 = Produce(name='Cucumber',
                   imageRef='https://www.shethepeople.tv/wp-content/uploads/2019/05/cucumber-e1558166231577.jpg')
+
+    db.session.add_all([p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20])
+    db.session.commit()
 
     pk1 = Producetokeyword(kproduct=Produce.query.get(1), tag=Keyword.query.get(1))
     pk2 = Producetokeyword(kproduct=Produce.query.get(1), tag=Keyword.query.get(9))
@@ -225,6 +234,9 @@ def popdb():
     pk82 = Producetokeyword(kproduct=Produce.query.get(20), tag=Keyword.query.get(9))
     pk83 = Producetokeyword(kproduct=Produce.query.get(20), tag=Keyword.query.get(12))
     pk84 = Producetokeyword(kproduct=Produce.query.get(20), tag=Keyword.query.get(11))
+
+    db.session.add_all([pk1,pk2,pk3,pk4,pk5,pk6,pk7,pk8,pk9,pk10,pk11,pk12,pk13,pk14,pk15,pk16,pk17,pk18,pk19,pk20,pk21,pk22,pk23,pk24,pk25,pk26,pk27,pk28,pk29,pk30,pk31,pk32,pk33,pk34,pk35,pk36,pk37,pk38,pk39,pk40,pk41,pk42,pk43,pk44,pk45,pk46,pk47,pk48,pk49,pk50,pk51,pk52,pk53,pk54,pk55,pk56,pk57,pk58,pk59,pk60,pk61,pk62,pk63,pk64,pk65,pk66,pk67,pk68,pk69,pk70,pk71,pk72,pk73,pk74,pk75,pk76,pk77,pk78,pk79,pk80,pk81,pk82,pk83,pk84])
+    db.session.commit()
 
     l1 = Listing(price=2.56, quantity=551, lproduct=Produce.query.get(2), owner=Supplier.query.get(16))
     l2 = Listing(price=3.27, quantity=1059, lproduct=Produce.query.get(1), owner=Supplier.query.get(4))
@@ -325,12 +337,7 @@ def popdb():
 
     l100 = Listing(price=1.81, quantity=226, lproduct=Produce.query.get(7), owner=Supplier.query.get(12))
 
-    db.session.add_all([s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,
-                        p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,
-                        k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,k16,k17,k18,k19,k20,k21,
-                        pk1,pk2,pk3,pk4,pk5,pk6,pk7,pk8,pk9,pk10,pk11,pk12,pk13,pk14,pk15,pk16,pk17,pk18,pk19,pk20,pk21,pk22,pk23,pk24,pk25,pk26,pk27,pk28,pk29,pk30,pk31,pk32,pk33,pk34,pk35,pk36,pk37,pk38,pk39,pk40,pk41,pk42,pk43,pk44,pk45,pk46,pk47,pk48,pk49,pk50,pk51,pk52,pk53,pk54,pk55,pk56,pk57,pk58,pk59,pk60,pk61,pk62,pk63,pk64,pk65,pk66,pk67,pk68,pk69,pk70,pk71,pk72,pk73,pk74,pk75,pk76,pk77,pk78,pk79,pk80,pk81,pk82,pk83,pk84,
-                        l1,l2,l3,l4,l5,l6,l7,l8,l9,l11,l12,l13,l14,l16,l17,l18,l20,l21,l22,l23,l24,l25,l26,l27,l29,l30,l31,l32,l33,l34,l35,l38,l39,l40,l41,l42,l43,l44,l45,l46,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l65,l66,l67,l68,l70,l71,l72,l73,l74,l75,l76,l78,l79,l80,l83,l84,l85,l86,l87,l88,l89,l90,l91,l92,l93,l94,l96,l97,l98,l100
-                        ])
+    db.session.add_all([l1,l2,l3,l4,l5,l6,l7,l8,l9,l11,l12,l13,l14,l16,l17,l18,l20,l21,l22,l23,l24,l25,l26,l27,l29,l30,l31,l32,l33,l34,l35,l38,l39,l40,l41,l42,l43,l44,l45,l46,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l65,l66,l67,l68,l70,l71,l72,l73,l74,l75,l76,l78,l79,l80,l83,l84,l85,l86,l87,l88,l89,l90,l91,l92,l93,l94,l96,l97,l98,l100])
     db.session.commit()
 
     return "Database has been populated."
@@ -339,8 +346,11 @@ def popdb():
 def resetDb():
     meta = db.metadata
     for table in reversed(meta.sorted_tables):
-        print('Clear table {}'.format(table))
-        db.session.execute(table.delete())
+        try:
+            print('Clear table {}'.format(table))
+            db.session.execute(table.delete())
+        except:
+                print('some exception')
     db.session.commit()
     popdb()
     return "DB reset"
