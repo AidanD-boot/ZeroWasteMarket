@@ -19,7 +19,8 @@ def cart():
 def browse():
     p = Produce.query.all()
     l = Listing.query.all()
-    return render_template('browse.html',listings=l,produce=p,title='Browse')
+    s = Supplier.query.all()
+    return render_template('browse.html',listings=l,produce=p, supplier=s, title='Browse')
 
 @app.route('/register', methods=['GET','POST'])
 def register():

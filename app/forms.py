@@ -1,8 +1,29 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField, FloatField, SelectMultipleField
 from wtforms.fields.html5 import DateTimeLocalField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Optional
 from app.models import User
+
+class SupplierForm(FlaskForm):
+    name = StringField('Business name', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    zipcode = IntegerField('Zipcode', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    submit = SubmitField('Create New Supplier')
+
+class ListingForm(FlaskForm):
+    price = FloatField('Price', validators=[DataRequired()])
+    quantity = IntegerField('Quantity Supplied', validators=[DataRequired()])
+    produce = SelectField('Produce', validators=[DataRequired()])
+    supplier = SelectField('Supplier', validators=[Optional()])
+    submit = SubmitField('Create New Listing')
+
+class ProduceForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    imageRef = StringField('Enter image link', validators=[DataRequired()])
+    keywords = SelectMultipleField('Select All Keywords that Apply', validators=[Optional()])
+    submit = SubmitField('Add New Produce Type')
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

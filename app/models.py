@@ -11,7 +11,7 @@ class Produce(db.Model):
 
 
     def __repr__(self):
-        return '<Produce {} {}>'.formate(self.name, self.imageRef)
+        return '<Produce {} {}>'.format(self.name, self.imageRef)
 
 class Supplier(db.Model):
     id = db.Column(db.Integer, primary_key=True)
