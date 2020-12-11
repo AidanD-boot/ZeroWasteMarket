@@ -8,7 +8,7 @@
                     <img class="card-img-top" style="width: 300px" src="{{ produce[listing.produce_id-1].imageRef }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ produce[listing.produce_id-1].name }}</h5>
-                        <p class="card-text">Sourced from: browse.html{{ supplier[listing.supplier_id-1].name }}</p>
+                        <p class="card-text">Sourced from: {{ supplier[listing.supplier_id-1].name }}</p>
                         <a href="#" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
