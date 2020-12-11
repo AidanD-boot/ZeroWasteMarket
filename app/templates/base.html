@@ -18,7 +18,7 @@
             float: left;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 18px 20px;
             font-size: 17px;
             text-decoration: none;
         }
@@ -36,17 +36,24 @@
         <a href="/index">Home</a>
         <a href="/browse">Browse</a>
         {% if current_user.is_anonymous %}
-        <a href="{{ url_for('login') }}">Login</a>
-        {% else %}
-        <div style="float:right" class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="/logout">Logout</a>
+            <div class="container" style="width: auto; float:right">
+                <a href="{{ url_for('login') }}">Login</a>
             </div>
-        </div>
+        {% else %}
+            <div class="container" style="width: auto; float:right">
+
+                <ul class="nav" role="navigation">
+                    <li class="dropdown">
+                        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><a tabindex="-1" href="/cart">Cart</a></li>
+                            <li><a tabindex="-1" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
         {% endif %}
     </div>
     <hr>

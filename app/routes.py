@@ -11,10 +11,15 @@ from app.models import User,Supplier,Produce,Listing,Keyword,Content,Producetoke
 def index():
     return render_template('index.html', title='Home')
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html', title='Cart')
+
 @app.route('/browse')
 def browse():
+    p = Produce.query.all()
     l = Listing.query.all()
-    return render_template('browse.html',listings=l,title='Home')
+    return render_template('browse.html',listings=l,produce=p,title='Browse')
 
 @app.route('/register', methods=['GET','POST'])
 def register():
