@@ -4,6 +4,9 @@ from wtforms.fields.html5 import DateTimeLocalField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Optional
 from app.models import User
 
+class ContentForm(FlaskForm):
+    quantity = IntegerField('Quantity Requested', validators=[DataRequired()])
+
 class SupplierForm(FlaskForm):
     name = StringField('Business name', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])

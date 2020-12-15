@@ -13,7 +13,13 @@ def index():
 
 @app.route('/cart')
 def cart():
+
     return render_template('cart.html', title='Cart')
+
+@app.route('/listing/<id>')
+def listing(id):
+    listing=Listing.query.get(id)
+    return render_template('listing.html', listing=listing, title='Listing')
 
 @app.route('/browse')
 def browse():

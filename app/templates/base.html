@@ -25,12 +25,17 @@
             color: #0DA35C;
             text-decoration: none;
             float: left;
+            text-align: center;
             padding-left:20px;
             padding-right:15px;
+            opacity: 0.8;
         }
         .topnav h4:hover {
             background-color: #0DA35C;
             color: #871254;
+        }
+        .topnav a:hover {
+            opacity:1;
         }
         .topnav h4.active {
 
@@ -39,8 +44,8 @@
     <body>
     <div class="topnav">
         <div>
-            <a href="/index"><h2>Zero-Waste Market</h2></a>
-            <a href="/browse"><h4>Browse</h4></a>
+            <a style="opacity:1" href="/index"><h2 style="font-weight: bold">Zero-Waste Market</h2></a>
+            <a href="/browse"><h2>Browse</h2></a>
         </div>
         {% if current_user.is_anonymous %}
             <div class="container" style="width: auto; float:right">
@@ -51,8 +56,8 @@
 
                 <ul class="nav" role="navigation">
                     <li class="dropdown">
-                        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><h3>Menu <b class="caret"></b></h3></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="font-size: large">
                             <li><a tabindex="-1" href="/cart">Cart</a></li>
                             <li><a tabindex="-1" href="/logout">Logout</a></li>
                         </ul>
