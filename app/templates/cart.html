@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
     <div style="padding-left:100px">
-        <h1> === Page Under Construction ===</h1>
+        {% for content in contents %}
+                <li class="list-group-item">
+                    <table style="height:300px">
+                        <trbody>
+                            <tr>
+                                <td class="align-baseline">
+                                <img style="width: 300px; height: 200px"
+                                     src="{{ produce[listings[content.listing_id-1].produce_id-1].imageRef }}">
+                                    </td>
+                                <td class="align-middle" style="padding-left: 40px">
+                                <div>
+                                    <h5 class="card-title"><a href="{{ url_for('listing',id=listings[content.listing_id-1].id) }}"> {{ produce[listings[content.listing_id-1].produce_id-1].name }}</a></h5>
+                                    <p class="card-text">Sourced from: {{ supplier[listings[content.listing_id-1].supplier_id-1].name }}</p>
+                                    <p class="card-text">{{ content.quantity }} requested.</p>
+                                    <p class="card-text">${{ listings[content.listing_id-1].price }}/lb</p>
+                                </div>
+                                </td>
+                            </tr>
+                        </trbody>
+                    </table>
+                </li>
+            {% endfor %}
+    <h3>
+        Your total is: ${{ tot }}
+    </h3>
     </div>
 {% endblock %}

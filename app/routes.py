@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app,db
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationForm, LoginForm, ContentForm, SupplierForm, ListingForm, ProduceForm
 from app.models import User,Supplier,Produce,Listing,Keyword,Content,Producetokeyword
 
 
@@ -13,13 +13,27 @@ def index():
 
 @app.route('/cart')
 def cart():
+    c = Content.query.all()
+    p = Produce.query.all()
+    l = Listing.query.all()
+    s = Supplier.query.all()
+    tot = 0
+    for i in range(len(c)):
+        tot+=c[i].quantity*l[c[i].listing_id-1].price
+    return render_template('cart.html', contents=c, listings=l,produce=p, supplier=s, tot=tot, title='Cart')
 
-    return render_template('cart.html', title='Cart')
-
-@app.route('/listing/<id>')
+@app.route('/listing/<id>', methods=['GET', 'POST'])
 def listing(id):
+    p = Produce.query.all()
+    s = Supplier.query.all()
     listing=Listing.query.get(id)
-    return render_template('listing.html', listing=listing, title='Listing')
+    form = ContentForm()
+    if form.validate_on_submit():
+        content = Content(quantity=form.quantity.data, cart=current_user, list=listing)
+        db.session.add(content)
+        db.session.commit()
+        return redirect(url_for('browse'))
+    return render_template('listing.html', listing=listing, produce=p, supplier=s, title='Listing', form=form)
 
 @app.route('/browse')
 def browse():

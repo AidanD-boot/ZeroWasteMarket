@@ -6,6 +6,7 @@ from app.models import User
 
 class ContentForm(FlaskForm):
     quantity = IntegerField('Quantity Requested', validators=[DataRequired()])
+    submit = SubmitField('Add to Cart', validators=[DataRequired()])
 
 class SupplierForm(FlaskForm):
     name = StringField('Business name', validators=[DataRequired()])
