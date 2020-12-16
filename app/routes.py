@@ -13,7 +13,7 @@ def index():
 
 @app.route('/cart')
 def cart():
-    c = Content.query.all()
+    c = Content.query.filter_by(cart=current_user).all()
     p = Produce.query.all()
     l = Listing.query.all()
     s = Supplier.query.all()
