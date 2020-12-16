@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app,db
-from app.forms import RegistrationForm, LoginForm, ContentForm, SupplierForm, ListingForm, ProduceForm
+from app.forms import RegistrationForm, LoginForm, ContentForm, SupplierForm, ListingForm, ProduceForm, SearchForm
 from app.models import User,Supplier,Produce,Listing,Keyword,Content,Producetokeyword
 
 
@@ -35,12 +35,49 @@ def listing(id):
         return redirect(url_for('browse'))
     return render_template('listing.html', listing=listing, produce=p, supplier=s, title='Listing', form=form)
 
-@app.route('/browse')
+@app.route('/browse', methods=['GET','POST'])
 def browse():
     p = Produce.query.all()
     l = Listing.query.all()
     s = Supplier.query.all()
-    return render_template('browse.html',listings=l,produce=p, supplier=s, title='Browse')
+    form=SearchForm()
+    if form.validate_on_submit():
+        return redirect(url_for('search', keyword=form.keyword.data))
+    return render_template('browse.html',listings=l,produce=p, supplier=s, title='Browse', form=form)
+
+@app.route('/contactus', methods=['GET','POST'])
+def contactus():
+    return render_template('contactus.html', title='Contact Us')
+
+@app.route('/supplier/<name>', methods=['GET','POST'])
+def supplier(name):
+    s = Supplier.query.filter_by(name=name).first()
+    l = Listing.query.filter_by(supplier_id=s.id).all()
+    p = Produce.query.all()
+    return render_template('supplier.html', listings=l, produce=p, supplier=s, title='Supplier')
+
+
+@app.route('/search/<keyword>', methods=['GET','POST'])
+def search(keyword):
+    p = Produce.query.all()
+    l = Listing.query.all()
+    s = Supplier.query.all()
+    k = Keyword.query.all()
+    pk = Producetokeyword.query.all()
+    # for i in range(len(l)):
+    #     if keyword not in p[l[i].produce_id-1].name and keyword not in s[l[i].supplier_id-1].name:
+    #         counter = 0
+    #         for j in range(len(pk)):
+    #             if keyword in k[pk[j].keyword_id-1].name:
+    #                 counter+=1
+    #         if counter == 0:
+    #             l.pop(i)
+
+
+    form = SearchForm
+    if form.validate_on_submit():
+        return redirect(url_for('search', keyword=form.keyword.data))
+    return render_template('search.html', listings=l, produce=p, supplier=s, title='Search', form=form)
 
 @app.route('/register', methods=['GET','POST'])
 def register():

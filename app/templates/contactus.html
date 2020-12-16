@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <head>
+
+        <title>{{ title }}</title>
+
+    </head>
+    <h2 style="padding:25px">Comments or questions? Leave them below!</h2>
+    <div style="width:50%;padding:25px">
+
+        <form
+                action="https://formspree.io/f/xleopvvy"
+                method="POST"
+        >
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" name="_replyto" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

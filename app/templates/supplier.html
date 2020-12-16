@@ -1,19 +1,70 @@
 {% extends "base.html" %}
 {% block content %}
+    <head>
+
+        <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOY17hcVEu4MbMR-HUtp__w676tPwI6Uc&callback=initMap&libraries=&v=weekly"
+                defer
+        ></script>
+        <style type="text/css">
+            /* Set the size of the div element that contains the map */
+            #map {
+                height: 400px;
+                /* The height is 400 pixels */
+                width: 60%;
+                /* The width is the width of the web page */
+            }
+        </style>
+        <script>
+            // Initialize and add the map
+            var geocoder;
+            var map;
+
+            function initialize() {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(-34.397, 150.644);
+                var mapOptions = {
+                    zoom: 14,
+                    center: latlng
+                }
+                var address = "{{ supplier.address }}" + " " + "{{ supplier.city }}";
+                geocoder.geocode({'address': address}, function (results, status) {
+                    if (status == 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+
+                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            }
+
+            {#function codeAddress() {#}
+            {#    var address = document.getElementById('address').value;#}
+            {#    geocoder.geocode({'address': address}, function (results, status) {#}
+            {#        if (status == 'OK') {#}
+            {#            map.setCenter(results[0].geometry.location);#}
+            {#            var marker = new google.maps.Marker({#}
+            {#                map: map,#}
+            {#                position: results[0].geometry.location#}
+            {#            });#}
+            {#        } else {#}
+            {#            alert('Geocode was not successful for the following reason: ' + status);#}
+            {#        }#}
+            {#    });#}
+
+        </script>
+
+    </head>
     <div>
-    <ul class="list-group list-group-flush">
-        {% for listing in listings %}
-            <li class="list-group-item">
-                <div class="card" style="width: 800px; padding-left: 20px;">
-                    <img class="card-img-top" style="width: 300px" src="{{ produce[listing.produce_id-1].imageRef }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ produce[listing.produce_id-1].name }}</h5>
-                        <p class="card-text">Sourced from: browse.html{{ supplier[listing.supplier_id-1].name }}</p>
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                    </div>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+        <h1>{{ supplier.name }}</h1>
+        <h2>{{ supplier.address }}, {{ supplier.city }}, {{ supplier.state }}, {{ supplier.zipcode }}</h2>
+        <body onload="initialize()">
+        <div id="map" style="width: 50%; height: 480px;"></div>
+        </body>
     </div>
 {% endblock %}

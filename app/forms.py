@@ -4,6 +4,10 @@ from wtforms.fields.html5 import DateTimeLocalField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Optional
 from app.models import User
 
+class SearchForm(FlaskForm):
+    keyword = StringField('Search using keyword', validators=[DataRequired()])
+    submit = SubmitField('Search', validators=[DataRequired()])
+
 class ContentForm(FlaskForm):
     quantity = IntegerField('Quantity Requested', validators=[DataRequired()])
     submit = SubmitField('Add to Cart', validators=[DataRequired()])

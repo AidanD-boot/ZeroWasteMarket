@@ -5,10 +5,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
     </head>
+
     <div>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.keyword.label }}<br>
+                {{ form.keyword(size=32) }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
         <ul class="list-group list-group-flush">
             {% for listing in listings %}
-                <li class="list-group-item">
+                <li id="partlist" class="list-group-item">
                     <table style="height:300px">
                         <trbody>
                             <tr>
@@ -19,7 +28,7 @@
                                 <td class="align-middle" style="padding-left: 40px">
                                 <div>
                                     <h5 class="card-title"><a href="{{ url_for('listing',id=listing.id) }}"> {{ produce[listing.produce_id-1].name }}</a></h5>
-                                    <p class="card-text">Sourced from: {{ supplier[listing.supplier_id-1].name }}</p>
+                                    <p class="card-text">Sourced from: <a href="{{ url_for('supplier', name=supplier[listing.supplier_id-1].name) }}"> {{ supplier[listing.supplier_id-1].name }}</a></p>
                                     <p class="card-text">{{ listing.quantity }} in stock.</p>
                                     <p class="card-text">${{ listing.price }}/lb</p>
                                     <a href="#" class="btn btn-primary">Add to Cart</a>
